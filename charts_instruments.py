@@ -23,7 +23,7 @@ OUTPUT_FILE = BASE_DIR / "technology_deployment_by_instrument.png"
 # ============================================================
 
 INSTRUMENT_ORDER = ["PPA", "Equity", "Development partnership"]
-TECH_ORDER = ["Solar", "Wind", "Storage", "Nuclear", "Geothermal"]
+TECH_ORDER = ["Solar", "Wind", "Hydro", "Storage", "Nuclear", "Geothermal"]
 
 COLORS = {
     "PPA": "#F2A317",
@@ -105,6 +105,8 @@ def classify_technology(value: object) -> str | None:
         return "Wind"
     if "wind" in text:
         return "Wind"
+    if "hydro" in text:
+        return "Hydro"
     if "solar" in text:
         return "Solar"
     if "nuclear" in text or "smr" in text or "fusion" in text:
