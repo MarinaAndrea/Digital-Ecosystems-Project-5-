@@ -301,6 +301,25 @@ def plot_chart(df: pd.DataFrame) -> None:
 
 def main() -> None:
     df = build_dataset()
+
+    instrument_counts = df["instrument"].value_counts()
+
+    total_raw = sum([
+        len(pd.read_excel(SOURCE_FILE, sheet_name=s))
+        for s in ["Google", "Meta", "Microsoft", "Amazon"]
+    ])
+
+    used_total = len(df)
+    dropped_total = total_raw - used_total
+
+    print("\n=== USED PROJECTS BY CATEGORY ===")
+    print(instrument_counts)
+
+    print("\n=== TOTALS ===")
+    print(f"Total raw projects: {total_raw}")
+    print(f"Used in analysis: {used_total}")
+    print(f"Dropped: {dropped_total}")
+
     plot_chart(df)
     print(f"Saved chart to: {OUTPUT_FILE}")
 
